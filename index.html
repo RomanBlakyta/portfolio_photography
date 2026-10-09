@@ -11,6 +11,7 @@
     <h1>Портфоліо Блакити Романа</h1>
     <nav>
         <a href="#aboutMe">Про мене</a>
+        <a href="#skills">Навички</a>
         <a href="#works">Роботи</a>
         <a href="#contacts">Контакти</a>
     </nav>
@@ -19,29 +20,51 @@
     <section id="aboutMe">
         <h2>Про мене</h2>
         <p>Я фотограф, поставив камеру на штатив</p>
-        <img src="assets/img/photo.webp" alt="Фото">
+        <img class="profile-img" src="assets/img/photo.webp" alt="Фото">
     </section>
+
+    <!-- Додано aside відповідно до варіанту -->
+    <aside id="skills">
+        <h2>Навички</h2>
+        <ul>
+            <li>Портретна зйомка</li>
+            <li>Репортаж та вулична фотографія</li>
+            <li>Предметна зйомка</li>
+            <li>Обробка в Adobe Lightroom / Photoshop</li>
+        </ul>
+    </aside>
+
     <section id="works">
         <h2>Роботи</h2>
-        <article>
-            <h3>Львівська вулиця</h3>
+        <article class="card">
             <img src="assets/img/street.png" alt="Львівська вулиця">
+            <div class="card-caption">
+                <h3>Львівська вулиця</h3>
+            </div>
         </article>
-        <article>
-            <h3>Провулок</h3>
+        <article class="card">
             <img src="assets/img/clock.png" alt="Провулок">
+            <div class="card-caption">
+                <h3>Провулок</h3>
+            </div>
         </article>
-        <article>
-            <h3>Будинок</h3>
+        <article class="card">
             <img src="assets/img/house.png" alt="Будинок">
+            <div class="card-caption">
+                <h3>Будинок</h3>
+            </div>
         </article>
-        <article>
-            <h3>Цвинтар</h3>
+        <article class="card">
             <img src="assets/img/cemetry.png" alt="Цвинтар">
+            <div class="card-caption">
+                <h3>Цвинтар</h3>
+            </div>
         </article>
-        <article>
-            <h3>Магія чисел</h3>
+        <article class="card">
             <img src="assets/img/numbers.png" alt="Магія чисел">
+            <div class="card-caption">
+                <h3>Магія чисел</h3>
+            </div>
         </article>
     </section>
 </main>
