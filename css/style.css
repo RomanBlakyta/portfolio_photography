@@ -6,11 +6,9 @@
 
 body {
     margin: 0;
-
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-
     background-color: #f8f9fa;
     color: #333333;
 }
@@ -24,50 +22,62 @@ a:hover {
     text-decoration: underline;
 }
 
-header {
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Прибирає зайвий простір під картинкою */
+}
+
+.site-header {
     background-color: #ffffff;
-    padding: 60px 20px;
+    padding: 20px;
     border-bottom: 1px solid #cccccc;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.site-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #111111;
     text-align: center;
 }
 
-header h1 {
-    font-size: 2.5rem;
-    margin: 0 0 20px 0;
-    color: #111111;
+.site-header nav {
+    display: flex;
+    flex-wrap: wrap; /* Дозволяє пунктам переноситися на новий рядок */
+    justify-content: center;
+    gap: 12px;
 }
 
-header nav a {
-    margin-right: 25px;
+.site-header nav a {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 0.9rem;
 }
-header nav a:last-child {
-    margin-right: 0;
-}
 
 main {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 20px;
 }
 
-section {
-    margin-bottom: 50px;
+section, aside {
+    margin-bottom: 40px;
 }
 
 h2 {
     border-bottom: 2px solid #0056b3;
     display: inline-block;
     padding-bottom: 5px;
+    margin-top: 0;
 }
 
 .profile-img {
-    width: 100%;
-    max-width: 300px;
     border-radius: 6px;
-    display: block;
     margin-top: 15px;
 }
 
@@ -75,8 +85,7 @@ aside {
     background-color: #eeeeee;
     border: 1px solid #dddddd;
     border-radius: 6px;
-    padding: 25px;
-    margin-bottom: 50px;
+    padding: 20px;
 }
 
 aside ul {
@@ -84,12 +93,14 @@ aside ul {
     padding-left: 20px;
     margin: 0;
 }
-
 aside ul li {
     margin-bottom: 12px;
 }
-aside ul li:last-child {
-    margin-bottom: 0;
+
+#works {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 .card {
@@ -97,23 +108,16 @@ aside ul li:last-child {
     border: 1px solid #e0e0e0;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    margin-bottom: 30px;
     overflow: hidden;
 }
 
-.card img {
-    width: 100%;
-    display: block;
-}
-
 .card-caption {
-    padding: 15px 20px;
+    padding: 15px;
     text-align: center;
 }
-
 .card-caption h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: #222222;
 }
 
@@ -121,11 +125,48 @@ footer {
     background-color: #222222;
     color: #999999;
     text-align: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     font-size: 0.85rem;
 }
-
 footer h2 {
     color: #ffffff;
     border-bottom: none;
+    margin-top: 0;
+}
+
+
+@media (min-width: 600px) {
+    #works {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+    }
+
+    .site-header {
+        padding: 30px 20px;
+    }
+    .site-header h1 {
+        font-size: 2.2rem;
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .site-header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px 40px;
+    }
+
+    .site-header h1 {
+        text-align: left;
+    }
+
+    #works {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    main {
+        padding: 40px;
+    }
 }
