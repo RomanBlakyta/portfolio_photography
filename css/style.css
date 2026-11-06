@@ -25,7 +25,7 @@ a:hover {
 img {
     max-width: 100%;
     height: auto;
-    display: block; /* Прибирає зайвий простір під картинкою */
+    display: block;
 }
 
 .site-header {
@@ -48,7 +48,7 @@ img {
 
 .site-header nav {
     display: flex;
-    flex-wrap: wrap; /* Дозволяє пунктам переноситися на новий рядок */
+    flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
 }
@@ -97,7 +97,7 @@ aside ul li {
     margin-bottom: 12px;
 }
 
-#works {
+.works-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
@@ -136,7 +136,7 @@ footer h2 {
 
 
 @media (min-width: 600px) {
-    #works {
+    .works-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 24px;
     }
@@ -161,7 +161,7 @@ footer h2 {
         text-align: left;
     }
 
-    #works {
+    .works-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 30px;
     }
