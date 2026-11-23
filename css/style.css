@@ -1,3 +1,27 @@
+/*
+ * Дизайн-рішення (практикум 5, варіант 2 – портфоліо фотографа).
+ * Нечітка вимога: «дизайн не повинен відвертати увагу від самих робіт».
+ * Тому інтерфейс зроблено мінімалістичним і майже безбарвним: теплий
+ * світлий фон, темно-сірий текст і сірі межі, щоб єдиними яскравими
+ * плямами на сторінці залишалися самі фотографії. Картки галереї не мають
+ * рамок і тіней, а між роботами – великі відступи, тож кожен кадр
+ * сприймається окремо. Єдиний акцентний (теракотовий) колір з'являється
+ * лише при наведенні на роботу й підказує, на яку саме фотографію дивиться
+ * користувач, не конкуруючи з нею в спокійному стані.
+ */
+:root {
+    --color-bg: #FAFAF8;
+    --color-surface: #FFFFFF;
+    --color-surface-alt: #F1F1EE;
+    --color-text: #1F1F1F;
+    --color-muted: #5C5C5C;
+    --color-border: #E4E4E0;
+    --color-accent: #A0461F;
+
+    --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
 *,
 *::before,
 *::after {
@@ -6,20 +30,31 @@
 
 body {
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333333;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text);
+}
+
+p {
+    max-width: 65ch;
 }
 
 a {
-    color: #0056b3;
+    color: var(--color-text);
     text-decoration: none;
 }
 a:hover {
-    color: #003d82;
     text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 img {
@@ -29,20 +64,19 @@ img {
 }
 
 .site-header {
-    background-color: #ffffff;
-    padding: 20px;
-    border-bottom: 1px solid #cccccc;
+    background-color: var(--color-surface);
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--color-border);
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
 }
 
 .site-header h1 {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
     margin: 0;
-    color: #111111;
     text-align: center;
 }
 
@@ -50,102 +84,128 @@ img {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    gap: 8px 20px;
 }
 
 .site-header nav a {
-    font-weight: bold;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+.site-header nav a:hover {
+    color: var(--color-text);
 }
 
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 32px 20px;
 }
 
 section, aside {
-    margin-bottom: 40px;
+    margin-bottom: 56px;
 }
 
 h2 {
-    border-bottom: 2px solid #0056b3;
-    display: inline-block;
-    padding-bottom: 5px;
-    margin-top: 0;
+    font-size: 1.75rem;
+    margin: 0 0 16px;
 }
 
 .profile-img {
-    border-radius: 6px;
-    margin-top: 15px;
+    width: 100%;
+    max-width: 320px;
+    border-radius: 2px;
+    margin-top: 16px;
 }
 
 aside {
-    background-color: #eeeeee;
-    border: 1px solid #dddddd;
-    border-radius: 6px;
-    padding: 20px;
+    background-color: var(--color-surface-alt);
+    border-radius: 2px;
+    padding: 24px;
 }
 
 aside ul {
-    list-style-type: square;
-    padding-left: 20px;
+    list-style-type: none;
+    padding-left: 0;
     margin: 0;
 }
 aside ul li {
-    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+aside ul li:last-child {
+    border-bottom: none;
 }
 
 .works-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 40px;
 }
 
 .card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    overflow: hidden;
+    background: none;
+    border: none;
+    overflow: visible;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 2px;
+    outline: 2px solid transparent;
+    outline-offset: 6px;
+    transition: outline-color 0.2s ease;
 }
 
 .card-caption {
-    padding: 15px;
-    text-align: center;
+    padding-top: 10px;
 }
 .card-caption h3 {
     margin: 0;
-    font-size: 1.2rem;
-    color: #222222;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+}
+
+.card:hover img {
+    outline-color: var(--color-accent);
+}
+.card:hover .card-caption h3 {
+    color: var(--color-accent);
 }
 
 footer {
-    background-color: #222222;
-    color: #999999;
+    background-color: var(--color-surface-alt);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
     text-align: center;
-    padding: 30px 20px;
-    font-size: 0.85rem;
+    padding: 40px 20px;
+    font-size: 0.875rem;
 }
 footer h2 {
-    color: #ffffff;
-    border-bottom: none;
-    margin-top: 0;
+    margin-bottom: 8px;
+}
+footer p {
+    margin: 4px auto;
 }
 
 
 @media (min-width: 600px) {
     .works-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 24px;
+        gap: 48px 40px;
     }
 
     .site-header {
-        padding: 30px 20px;
+        padding: 32px 20px;
     }
     .site-header h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 }
 
@@ -154,19 +214,24 @@ footer h2 {
     .site-header {
         flex-direction: row;
         justify-content: space-between;
-        padding: 30px 40px;
+        padding: 32px max(40px, calc((100% - 1200px) / 2 + 40px));
     }
 
     .site-header h1 {
+        font-size: 2.25rem;
         text-align: left;
     }
 
     .works-grid {
         grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
+        gap: 56px 48px;
     }
 
     main {
-        padding: 40px;
+        padding: 56px 40px;
+    }
+
+    section, aside {
+        margin-bottom: 72px;
     }
 }
