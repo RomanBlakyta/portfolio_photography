@@ -1,16 +1,57 @@
 console.log('script.js підключено');
 
+const placeholderCard = document.querySelector('#placeholder-card');
+placeholderCard.remove();
+
 const CURRENT_YEAR = 2026;
 
 const works = [
-    { title: 'Львівська вулиця', year: 2025, category: 'вулична' },
-    { title: 'Провулок', year: 2024, category: 'вулична' },
-    { title: 'Будинок', year: 2023, category: 'архітектура' },
-    { title: 'Цвинтар', year: 2022, category: 'архітектура' },
-    { title: 'Магія чисел', year: 2021, category: 'вулична' },
+    {
+        title: 'Львівська вулиця',
+        year: 2025,
+        category: 'вулична',
+        image: 'assets/img/street.png',
+        description: 'Вулиця старого Львова з жовтим трамваєм',
+    },
+    {
+        title: 'Провулок',
+        year: 2024,
+        category: 'вулична',
+        image: 'assets/img/clock.png',
+        description: 'Вузький провулок з годинником на стіні та аркою',
+    },
+    {
+        title: 'Будинок',
+        year: 2023,
+        category: 'архітектура',
+        image: 'assets/img/house.png',
+        description: 'Фасад старовинного будинку з ліпниною й балконом',
+    },
+    {
+        title: 'Цвинтар',
+        year: 2022,
+        category: 'архітектура',
+        image: 'assets/img/cemetry.png',
+        description: 'Кам’яний надгробок зі скульптурою серед дерев',
+    },
+    {
+        title: 'Магія чисел',
+        year: 2021,
+        category: 'вулична',
+        image: 'assets/img/numbers.png',
+        description: 'Вхід до бару з цифрами 69 на вивісці',
+    },
+    {
+        title: 'Дзвіниця',
+        year: 2024,
+        category: 'архітектура',
+        image: 'assets/img/cathedral.png',
+        description: 'Дзвіниця із зеленим куполом на тлі хмар',
+    },
 ];
 
-// Виводить у консоль роботи заданої категорії і повертає їх кількість
+const listContainer = document.querySelector('#gallery');
+
 function printWorksByCategory(list, category) {
     console.log(`Роботи категорії «${category}»:`);
     let count = 0;
@@ -24,7 +65,6 @@ function printWorksByCategory(list, category) {
     return count;
 }
 
-// Позначає кожну роботу як архівну (старшу 3 років) або актуальну
 function markOldWorks(list) {
     console.log('Вік робіт:');
     for (const work of list) {
@@ -39,7 +79,6 @@ function markOldWorks(list) {
     }
 }
 
-// Повертає true, якщо роботі не більше 2 років
 const isRecent = year => (CURRENT_YEAR - year) <= 2;
 
 printWorksByCategory(works, 'вулична');
@@ -53,3 +92,38 @@ for (const work of works) {
     const status = recent ? 'нова робота' : 'не нова';
     console.log(`${work.title} (${work.year}): ${recent} – ${status}`);
 }
+
+function renderGallery(list) {
+    listContainer.innerHTML = '';
+    list.forEach(work => {
+        const card = document.createElement('article');
+        card.classList.add('card');
+        card.dataset.category = work.category;
+        if (isRecent(work.year)) {
+            card.classList.add('recent');
+        }
+
+        const img = document.createElement('img');
+        img.src = work.image;
+        img.alt = work.description;
+
+        const caption = document.createElement('div');
+        caption.classList.add('card-caption');
+
+        const title = document.createElement('h3');
+        title.textContent = work.title;
+
+        const year = document.createElement('p');
+        year.classList.add('card-year');
+        year.textContent = work.year;
+
+        caption.append(title, year);
+        card.append(img, caption);
+        listContainer.append(card);
+    });
+}
+
+renderGallery(works);
+
+const projectsCount = document.querySelector('#projects-count');
+projectsCount.textContent = `Робіт у галереї: ${works.length}`;
