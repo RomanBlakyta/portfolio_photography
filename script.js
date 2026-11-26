@@ -52,6 +52,7 @@ const works = [
 
 const listContainer = document.querySelector('#gallery');
 
+// Виводить у консоль роботи заданої категорії і повертає їх кількість
 function printWorksByCategory(list, category) {
     console.log(`Роботи категорії «${category}»:`);
     let count = 0;
@@ -65,6 +66,7 @@ function printWorksByCategory(list, category) {
     return count;
 }
 
+// Позначає кожну роботу як архівну (старшу 3 років) або актуальну
 function markOldWorks(list) {
     console.log('Вік робіт:');
     for (const work of list) {
@@ -79,6 +81,7 @@ function markOldWorks(list) {
     }
 }
 
+// Повертає true, якщо роботі не більше 2 років
 const isRecent = year => (CURRENT_YEAR - year) <= 2;
 
 printWorksByCategory(works, 'вулична');
@@ -93,6 +96,8 @@ for (const work of works) {
     console.log(`${work.title} (${work.year}): ${recent} – ${status}`);
 }
 
+// Очищає галерею і створює картку article для кожної роботи масиву:
+// фото з src і alt, назва в h3, рік у p; нові роботи отримують клас recent
 function renderGallery(list) {
     listContainer.innerHTML = '';
     list.forEach(work => {
